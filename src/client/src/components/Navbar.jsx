@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
 import DarkModeButton from './DarkModeButton/DarkModeButton.jsx';
 import { useSupplier } from '../context/supplierContext.jsx';
+import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const { auth, setAuth } = useAuth();
@@ -19,9 +20,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar navbar-expand-lg ${darkMode ? 'bg-dark' : 'bg-light'}`}>
-      <div className="container-fluid">
-        <NavLink className={`navbar-brand ${darkMode ? 'text-light' : 'text-dark'}`} to="/">
+    <nav className={styles.navbar + (darkMode ? ' ' + styles.dark : ' ' + styles.light)}>
+      <div className={styles.container}>
+        <NavLink className={styles.brand} to="/">
           RealTimeEdify
         </NavLink>
         <button
@@ -36,44 +37,38 @@ const Navbar = () => {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            {auth.user ? (
-              <>
-              <li className="nav-item">
-                  <DarkModeButton />
-                </li>
-              <li className="nav-item">
-                <button className="btn btn-danger" onClick={handleLogout}>
-                  Logout
-                </button>
-              </li>
-              </>
-            ) : (
-              <>
-                <li className="nav-item">
-                  <DarkModeButton />
-                </li>
-                <li className="nav-item">
-                  <NavLink
-                    className={`nav-link ${darkMode ? 'text-light' : 'text-dark'}`}
-                    to="/"
-                    activeclassname="active"
-                  >
-                    Login
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink
-                    className={`nav-link ${darkMode ? 'text-light' : 'text-dark'}`}
-                    to="/register"
-                    activeclassname="active"
-                  >
-                    Register
-                  </NavLink>
-                </li>
-              </>
-            )}
-          </ul>
+          <div className={styles.links}>
+            <ul className={styles.navList}>
+              {auth.user ? (
+                <>
+                  <li>
+                    <DarkModeButton />
+                  </li>
+                  <li>
+                    <button className={styles.logoutButton} onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <DarkModeButton />
+                  </li>
+                  <li>
+                    <NavLink className={styles.link} to="/" activeclassname={styles.active}>
+                      Login
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink className={styles.link} to="/register" activeclassname={styles.active}>
+                      Register
+                    </NavLink>
+                  </li>
+                </>
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     </nav>

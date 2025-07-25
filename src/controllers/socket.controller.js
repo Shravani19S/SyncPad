@@ -1,4 +1,5 @@
 import { getDocThroughSocket } from "./doc.controller.js";
+import Message from '../models/message.model.js'; // Add this
 import DocumentModel from "../models/documents.model.js";
 const roomUsers = {};
 
@@ -114,6 +115,27 @@ const handleConnection = async (socket, io, userId) => {
       callback('Error saving doc');
     }
   });
+
+  socket.on('send-chat-message', async (data) => {
+  const { roomId, username, message } = data;
+
+  try {
+    // Save message to MongoDB
+    await Message.create({
+      docId: roomId,
+      username,
+      message,
+    });
+
+    io.to(roomId).emit('receive-chat-message', {
+      username,
+      message,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error('Error saving chat message:', error.message);
+  }
+});
 
 
   socket.on('disconnect', () => {

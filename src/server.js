@@ -7,6 +7,7 @@ import userRouter from './routes/user.routes.js';
 import documentRouter from './routes/document.routes.js';
 import dbConnect from './utils/dbConnect.js';
 import cors from 'cors';
+import messageRouter from './routes/message.routes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/documents', documentRouter);
+app.use('/api/v1/messages', messageRouter);
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));

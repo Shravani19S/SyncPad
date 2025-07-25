@@ -1,0 +1,116 @@
+:root {
+  --primary: #6366f1; /* Indigo */
+  --primary-dark: #4f46e5;
+  --secondary: #06b6d4; /* Teal */
+  --accent: #fbbf24; /* Yellow */
+  --background: #f3f4f6;
+  --background-dark: #18181b;
+  --sidebar-bg: linear-gradient(135deg, #e0e7ff 0%, #f0fdfa 100%);
+  --chat-bg: #fff;
+  --chat-border: #6366f1;
+  --text: #18181b;
+  --text-light: #f9fafb;
+  --border-radius: 1.2rem;
+  --transition: 0.2s;
+  --font-family: 'Inter', sans-serif;
+  --font-heading: 'Poppins', 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--background);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  border: 5px solid red !important; /* DIAGNOSTIC: REMOVE AFTER TEST */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.sidebar {
+  background: var(--sidebar-bg) !important;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 24px rgba(99,102,241,0.08);
+  padding: 2rem 1.2rem;
+  min-height: 90vh;
+  transition: background var(--transition);
+}
+
+.sidebar .list-group-item {
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+}
+
+.sidebar .list-group-item.active,
+.sidebar .list-group-item:focus {
+  background: var(--primary) !important;
+  color: var(--text-light) !important;
+}
+
+/* ChatBox styles */
+.chat-box {
+  background: var(--chat-bg);
+  border-left: 6px solid var(--chat-border);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 12px rgba(99,102,241,0.08);
+  padding: 1.2rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  transition: box-shadow var(--transition), background var(--transition);
+}
+
+.chat-box .message strong {
+  color: var(--primary);
+}
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--primary-dark) !important;
+  border-color: var(--primary-dark) !important;
+}
+.btn-secondary {
+  background-color: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+  color: #18181b !important;
+}
+.btn-secondary:hover, .btn-secondary:focus {
+  background-color: #0ea5e9 !important;
+  border-color: #0ea5e9 !important;
+  color: #fff !important;
+}
+
+.card, .modal-content {
+  border-radius: var(--border-radius) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08) !important;
+  transition: box-shadow var(--transition), background var(--transition);
+}
+
+.card:hover {
+  box-shadow: 0 8px 32px rgba(99,102,241,0.12) !important;
+  border-color: var(--primary) !important;
+}
+
+.text-accent {
+  color: var(--accent) !important;
+}
+
+.p-4 {
+  padding: 2rem !important;
+}
+.mt-4 {
+  margin-top: 2rem !important;
+}
+.mb-4 {
+  margin-bottom: 2rem !important;
+}

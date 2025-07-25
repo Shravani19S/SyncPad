@@ -15,9 +15,9 @@ const Card = ({ cardData, deleteEvent }) => {
     return (
         <>
             {cardData?.title && (
-                <div className={`col-12`}>
-                    <div className={`card ${cardBgClass} shadow-sm  h-100`}>
-                        <div className="card-body d-flex flex-column">
+                <div className="col-12 mb-4">
+                    <div className={`card ${cardBgClass} shadow-lg rounded-4 h-100 border-0 position-relative card-hover p-4`}>
+                        <div className="card-body d-flex flex-column p-0">
                             {/* Card Title and Metadata */}
                             <div className="d-flex justify-content-between align-items-center mb-3">
                                 <h5 className={`card-title ${cardTitleClass} mb-0`}>{cardData?.title}</h5>
@@ -25,16 +25,16 @@ const Card = ({ cardData, deleteEvent }) => {
                                     {new Date(cardData?.createdAt).toLocaleDateString()}
                                 </small>
                             </div>
-                            <p className={`${textMutedClass} mb-2`}>Owner: {cardData?.owner?.username}</p>
+                            <p className="text-accent mb-2">Owner: {cardData?.owner?.username}</p>
                             {/* Preview Text */}
                             <p className="card-text mb-4">
                                 {cardData?.content?.ops[0]?.insert?.slice(0, 50) || ''}
                                 {cardData?.content?.ops[0]?.insert?.length > 50 ? '...' : ''}
                             </p>
                             {/* Action Buttons */}
-                            <div className="d-flex justify-content-between mt-auto">
+                            <div className="d-flex justify-content-end gap-3 mt-auto">
                                 <button
-                                    className={`btn btn-outline-danger`}
+                                    className="btn btn-outline-danger px-4 py-2 rounded-pill fw-semibold shadow-sm"
                                     data-bs-toggle="modal"
                                     data-bs-target={`#deleteDoc${cardData?._id}`}
                                 >
@@ -45,7 +45,7 @@ const Card = ({ cardData, deleteEvent }) => {
                                         navigate(`/edit/${cardData._id}`);
                                         setCurrentDoc(cardData);
                                     }}
-                                    className={`btn btn-outline-success`}
+                                    className="btn btn-primary px-4 py-2 rounded-pill fw-semibold shadow-sm"
                                 >
                                     <i className="bi bi-pencil-square me-2"></i>Edit
                                 </button>
